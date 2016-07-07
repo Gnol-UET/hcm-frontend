@@ -1,0 +1,37 @@
+<h1>Sign up</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-push-10 col-lg-offset-10">
+            <a href="index.html#/login" class="btn btn-default signupbutton">Login</a>
+            <a href="index.html#/signup" class="btn btn-default signupbutton">Signup</a>
+
+        </div>
+
+    </div>
+    <div style="font-size: 40px;color: #2b669a; padding-left: 17%;padding-bottom: 60px"> Welcome to Higgsup Class Management</div>
+
+    <div class="row">
+        <div class="signup">
+            <form class="form-signin">
+                <label for="inputUsername" class="sr-only">Username</label>
+                <input ng-model="signup.username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input  ng-model="signup.password" type="password" id="inputPassword" class="form-control" placeholder="Password Confirm" required>
+                <label for="inputPasswordConfirm" class="sr-only">Password</label>
+                <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Password Confirm" required>
+                <form action="">
+                    You are
+                    <input ng-model="signup.role" type="radio" name="role" value="0"> Teacher
+                    <input ng-model="signup.role" type="radio" name="role" value="1"> Student
+                </form>
+                <div class="col-xs-4 col-sm-offset-4">
+                    <button class="btn btn-lg btn-primary btn-block "ng-click="signup()" >Signup</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</div> <!-- /container -->
