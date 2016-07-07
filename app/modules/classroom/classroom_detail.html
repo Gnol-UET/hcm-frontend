@@ -91,9 +91,9 @@ classroom_detail + {{classId}}
 <div>
     <ul>
         <li ng-repeat="post in posts">
-            {{post.postContent}}
-            <button class="btn btn-primary">Sửa</button>
-            <button class="btn btn-primary">Xóa</button>
+            <a href="#"  editable-text="post.postContent" ng-model="postContent" value="post.postContent"
+               onaftersave="editPost(post)">{{post.postContent}} + {{post.postId}}</a>
+            <button class="btn btn-danger" ng-click = "deletePostClass(post)">Xóa</button>
         </li>
     </ul>
 </div>

@@ -3,6 +3,9 @@
         .controller('ClassroomDetailCtrl', ['postService', '$scope', 'classroomService', '$rootScope', '$location', '$route', '$routeParams', 'groupService',
             function (postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
 
+                $scope.newPostInClass = '';
+                $scope.postContent = null;
+                
                 $scope.groups = [];
 
                 $scope.classId = $routeParams.classId;
@@ -70,7 +73,7 @@
 
                 }
                 $scope.userLeavegroup = function (group_id) {
-                    groupService.userLeavegroup(group_id)
+                    classroomService.userLeavegroup(group_id)
                         .then(
                             function (response) {
                                 console.log("leave success");
@@ -78,6 +81,48 @@
                             function (error) {
                                 console.log("leave err");
                             })
+                }
+                $scope.createPost = function (classId) {
+                    var request = {
+                        postContent: $scope.newPostInClass
+                    }
+                    postService.createPostInClass(classId, request)
+                        .then(function (response) {
+                            //
+                            console.log("Done");
+                        }, function (error, data) {
+
+                        })
+
+                }
+                $scope.getAllPostInClass = function (classId) {
+                    postService.getAllPostInClass(classId)
+                        .then(function (response) {
+                            $scope.posts = response.data;
+                            $scope.postId = response.data.postId;
+                        }, function (error, data) {
+
+                        })
+                };
+
+                $scope.editPost = function (post) {
+                    console.log(post.postContent);
+                    postService.editPost(post)
+                        .then(function (response) {
+                                console.log("edit succ");
+                            }, function (error, data) {
+
+                            }
+                        )
+                }
+                $scope.deletePostClass = function (post) {
+                    console.log(post.postId);
+                    postService.deletePost(post.postId)
+                        .then(function (response) {
+                            console.log("edit succ");
+                        },function (error,data) {
+
+                        })
                 }
 
 

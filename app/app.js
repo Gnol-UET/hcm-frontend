@@ -9,6 +9,8 @@ angular.module('myApp', [
     'view2',
     'login',
     'signup',
+    'xeditable',
+    'group',
     'classroom',
     'classroomDetail',
     'services',
