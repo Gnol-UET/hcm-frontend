@@ -9,10 +9,11 @@ angular.module('myApp', [
     'view2',
     'login',
     'signup',
+    'xeditable',
+    'group',
     'classroom',
     'classroomDetail',
-    'services',
-    'group'
+    'services'
 ]).config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider.otherwise({redirectTo: '/login'});
 
@@ -22,4 +23,6 @@ angular.module('myApp', [
     $httpProvider.defaults.headers.put = {'Content-Type': 'application/json'};
     $httpProvider.defaults.headers.patch = {'Content-Type': 'application/json'};
     $httpProvider.interceptors.push('httpRequestInterceptor');
-}]);
+}]).run(function(editableOptions) {
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});

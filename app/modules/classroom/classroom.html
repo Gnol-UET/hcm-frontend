@@ -1,31 +1,15 @@
-<!--CLASSROOMS-->
-<!--&lt;!&ndash;<br>&ndash;&gt;-->
-
-<!--<input type="text" placeholder="enter class name" ng-model="classroom.className">-->
-<!--<button ng-click="addClassroom()">Add new classroom</button>-->
-
-<!--&lt;!&ndash;<br>&ndash;&gt;-->
-
-<!--<button ng-click="loadClasses()"> see all classroom  </button>-->
-<!--<div ng-repeat="classroom in classrooms">-->
-<!--<span > <a href="index.html#/classroom/{{classroom.classId}}">{{classroom.className}} </a>-->
-<!--Teacher :  {{classroom.userDTO1.username}}</span>-->
-<!--<button ng-click="addStudentToClass(classroom.classId)">Enroll this classroom</button>-->
-<!--<button ng-click="deleteStudentFromClass(classroom.classId)">Leave this classroom</button>-->
-<!--<button ng-click="deleteClassroom(classroom.classId)">delete classroom</button>-->
-<!--</div>-->
-
 <div>
 
     <div class="row">
         <div class="col-xs-12">
-            <h2 class="col-xs-push-1 col-xs-5" style="padding-bottom: 1%; color: #2e6da4;font-size: 80px">Select class</h2>
+            <h2 class="col-xs-push-1 col-xs-5" style="padding-bottom: 1%; color: #2e6da4;font-size: 80px">Select
+                class</h2>
         </div>
 
     </div>
     <div class="col-xs-12">
         <div class="col-xs-3 text-center">
-            <div >
+            <div>
                 <button type="button" class="btn btn-default add" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-plus-square" style="font-size: 10em;color: #28A2C7"></i>
                 </button>
@@ -42,29 +26,26 @@
                             </div>
                             <div class="modal-body">
                                 <form class="form-signin">
-                                    <input ng-model="classroom.className" type="text" id="inputClassname" class="form-control" placeholder="Classname" required autofocus>
-                                    <input ng-model="login.username" type="text" id="inputClassDetail" class="form-control" placeholder="Description" >
+                                    <input ng-model="classroom.className" type="text" id="inputClassname"
+                                           class="form-control" placeholder="Classname" required autofocus>
+                                    <input ng-model="login.username" type="text" id="inputClassDetail"
+                                           class="form-control" placeholder="Description">
                                     <br>
-                                    <button class="btn btn-lg btn-primary btn-block "  ng-click="addClassroom()">Create</button>
+                                    <button class="btn btn-lg btn-primary btn-block " ng-click="addClassroom()">Create
+                                    </button>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
-
-
-
             </div>
         </div>
         <div class="col-xs-7 nav">
-            <ul ng-repeat="classroom in classrooms"  >
-                <li ng-click="showClassDetail(classroom.classId)"style= "list-style: none;padding-left: 7%">
+            <ul ng-repeat="classroom in classrooms">
+                <li ng-click="showClassDetail(classroom.classId)" style="list-style: none;padding-left: 7%">
                     <a href="" class="black"><i class="fa fa-square-o " style="font-size: 8em"></i></a>
                     <p style="font-size: 15px;text-align: center">
                         {{classroom.className}}
@@ -76,7 +57,7 @@
             <p>class information</p>
             {{className}}
             {{classId}}
-            <button class="btn btn-primary" ng-click="deleteStudentFromClass(classId)" >Leave</button>
+            <button class="btn btn-primary" ng-click="deleteStudentFromClass(classId)">Leave</button>
             <button class="btn btn-primary" ng-click="addStudentToClass(classId)">Join</button>
 
         </div>

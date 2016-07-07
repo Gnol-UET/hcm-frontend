@@ -13,7 +13,8 @@
             deleteClassroom : deleteClassroom,
             addStudentToClass: addStudentToClass,
             deleteStudentFromClass : deleteStudentFromClass,
-            getClassDetail: getClassDetail
+            getClassDetail: getClassDetail,
+            
 
         }
         function getClassrooms() {
@@ -54,5 +55,6 @@
                 method: 'GET'
             })
         }
+
     }
 }())
