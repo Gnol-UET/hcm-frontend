@@ -3,7 +3,7 @@
 
     angular.module('services')
         .factory('commentService',commentService);
- 
+
     commentService.$inject = ['$log', '$http', '$q'];
 
     function commentService($log, $http, $q) {
@@ -19,7 +19,7 @@
                 url: 'http://localhost:8080/posts/' + postId ,
                 method: 'GET'
                 
-            })
+            }) 
         }
         function addComment(postId,opts) {
             return $http({
