@@ -12,7 +12,8 @@ angular.module('myApp', [
     'classroom',
     'classroomDetail',
     'services',
-    'group'
+    'group',
+    'comment'
 ]).config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider.otherwise({redirectTo: '/login'});
 

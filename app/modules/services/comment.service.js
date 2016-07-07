@@ -8,10 +8,18 @@
 
     function commentService($log, $http, $q) {
         return{
+            getComment : getComment,
             addComment : addComment,
             editComment: editComment,
             deleteComment : deleteComment
             
+        }
+        function getComment(postId) {
+            return $http({
+                url: 'http://localhost:8080/posts/' + postId ,
+                method: 'GET'
+                
+            })
         }
         function addComment(postId,opts) {
             return $http({
