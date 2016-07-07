@@ -19,7 +19,7 @@
                         function (error) {
                             console.log("error get detail")
                         }
-                };
+                }; 
 
                 $scope.addComment = function (postId) {
                     $scope.commentDTO={
