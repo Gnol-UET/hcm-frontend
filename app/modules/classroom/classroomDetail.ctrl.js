@@ -1,9 +1,9 @@
-(function(){
+(function () {
     angular.module('classroomDetail')
-        .controller('ClassroomDetailCtrl',['postService','$scope','classroomService','$rootScope','$location','$route','$routeParams','groupService',
-            function (postService ,$scope, classroomService, $rootScope, $location,  $route ,$routeParams,groupService) {
+        .controller('ClassroomDetailCtrl', ['postService', '$scope', 'classroomService', '$rootScope', '$location', '$route', '$routeParams', 'groupService',
+            function (postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
 
-                $scope.groups=[];
+                $scope.groups = [];
 
                 $scope.classId = $routeParams.classId;
 
@@ -47,6 +47,7 @@
                 function setSelected(group) {
                     $scope.selectedData = group;
                 }
+
                 $scope.getAllPostInClass = function (classId) {
                     postService.getAllPostInClass(classId)
                         .then(function (response) {
@@ -67,6 +68,16 @@
 
                         })
 
+                }
+                $scope.userLeavegroup = function (group_id) {
+                    groupService.userLeavegroup(group_id)
+                        .then(
+                            function (response) {
+                                console.log("leave success");
+                            },
+                            function (error) {
+                                console.log("leave err");
+                            })
                 }
 
 

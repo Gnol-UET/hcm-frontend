@@ -55,7 +55,7 @@
             })
         }
 
-        function getgroupDetail() {
+        function getgroupDetail(group_id) {
             return $http({
                 url: 'http://localhost:8080/groups/' + group_id + '/user',
                 method: 'GET'

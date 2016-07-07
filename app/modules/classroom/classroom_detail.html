@@ -1,10 +1,9 @@
-
 <!--<button ng-click="getGroups(classId)">get all</button>-->
 <!--<input ng-model="group.groupName">-->
 <!--<button ng-click="createGroup(classId)">add group</button>-->
 
 <!--<div ng-repeat="group in groups">-->
-    <!--{{group.groupName}}-->
+<!--{{group.groupName}}-->
 
 <!--</div>-->
 GROUP
@@ -57,9 +56,14 @@ classroom_detail + {{classId}}
                     <h4 class="modal-title">Group: {{selectedData.groupName}}</h4>
                 </div>
                 <div class="modal-body">
-                    <button class="btn btn-lg btn-primary btn-block " ng-click="addUserTogroup(selectedData.groupId)">
+                    <button class="btn btn-lg btn-primary btn-block " ng-click="addUserTogroup(selectedData.groupId)"
+                            data-dismiss="modal">
                         Join
                         Group
+                    </button>
+                    <button class="btn btn-lg btn-primary btn-block " ng-click="userLeavegroup(selectedData.groupId)"
+                            data-dismiss="modal">
+                        Leave Group
                     </button>
                     <button class="btn btn-lg btn-default btn-block " data-dismiss="modal">Cancel
                     </button>
@@ -70,17 +74,6 @@ classroom_detail + {{classId}}
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 ------------------------------

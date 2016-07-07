@@ -11,15 +11,15 @@ angular.module('myApp', [
     'signup',
     'classroom',
     'classroomDetail',
-    'services'
-]).
-    config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
-        $routeProvider.otherwise({redirectTo: '/login'});
+    'services',
+    'group'
+]).config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
+    $routeProvider.otherwise({redirectTo: '/login'});
 
-        $httpProvider.defaults.headers.get = {'Content-Type': 'application/json'};
-        $httpProvider.defaults.headers.common = {'Content-Type': 'application/json'};
-        $httpProvider.defaults.headers.post = {'Content-Type': 'application/json'};
-        $httpProvider.defaults.headers.put = {'Content-Type': 'application/json'};
-        $httpProvider.defaults.headers.patch = {'Content-Type': 'application/json'};
-        $httpProvider.interceptors.push('httpRequestInterceptor');
-    }]);
+    $httpProvider.defaults.headers.get = {'Content-Type': 'application/json'};
+    $httpProvider.defaults.headers.common = {'Content-Type': 'application/json'};
+    $httpProvider.defaults.headers.post = {'Content-Type': 'application/json'};
+    $httpProvider.defaults.headers.put = {'Content-Type': 'application/json'};
+    $httpProvider.defaults.headers.patch = {'Content-Type': 'application/json'};
+    $httpProvider.interceptors.push('httpRequestInterceptor');
+}]);
