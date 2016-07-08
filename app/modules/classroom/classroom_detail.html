@@ -6,94 +6,107 @@
 <!--{{group.groupName}}-->
 
 <!--</div>-->
-GROUP
-classroom_detail + {{classId}}
-<br>
-<button ng-click="getGroups(classId)">get all</button><br>
-<div>
-    <button data-toggle="modal" data-target="#myModalCreat">Create Group</button>
+<div class="row" style="padding-left: 5%">
+    CLASS: {{classId}}
 
-    <div id="myModalCreat" class="modal fade" role="dialog">
-        <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Create Group</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-signin">
-                        <input ng-model="group.groupName" type="text" id="inputGroupname"
-                               class="form-control" placeholder="Group" required autofocus>
-                        <br>
-                        <button class="btn btn-lg btn-primary btn-block " ng-click="createGroup(classId)">Create
-                        </button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+    <!--<div ng-repeat="group in groups">-->
 
-        </div>
+        <!--<button data-toggle="modal" data-target="#myModal" ng-click="setSelected(group)"> {{group.groupName}} +-->
+            <!--{{group.groupId}}-->
+        <!--</button>-->
+        <!--<div id="myModal" class="modal fade" role="dialog">-->
+            <!--<div class="modal-dialog">-->
+
+                <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+                <!--<div class="modal-content">-->
+                    <!--<div class="modal-header">-->
+                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                        <!--<h4 class="modal-title">Group: {{selectedData.groupName}}</h4>-->
+                    <!--</div>-->
+                    <!--<div class="modal-body">-->
+                        <!--<button class="btn btn-lg btn-primary btn-block " ng-click="addUserTogroup(selectedData.groupId)"-->
+                                <!--data-dismiss="modal">-->
+                            <!--Join-->
+                            <!--Group-->
+                        <!--</button>-->
+                        <!--<button class="btn btn-lg btn-primary btn-block " ng-click="userLeavegroup(selectedData.groupId)"-->
+                                <!--data-dismiss="modal">-->
+                            <!--Leave Group-->
+                        <!--</button>-->
+                        <!--<button class="btn btn-lg btn-default btn-block " data-dismiss="modal">Cancel-->
+                        <!--</button>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+
+    <hr/>
+    <div>
+        <label>Create New Post</label>
+        <input type="text" ng-model="newPostInClass">
+        <button type="submit" ng-click="createPost(classId)">Create</button>
+        {{newPostInClass1}}
     </div>
-</div>
-<br><br><br><br><br>
-
-<div ng-repeat="group in groups">
-
-    <button data-toggle="modal" data-target="#myModal" ng-click="setSelected(group)"> {{group.groupName}} +
-        {{group.groupId}}
-    </button>
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Group: {{selectedData.groupName}}</h4>
-                </div>
-                <div class="modal-body">
-                    <button class="btn btn-lg btn-primary btn-block " ng-click="addUserTogroup(selectedData.groupId)"
-                            data-dismiss="modal">
-                        Join
-                        Group
-                    </button>
-                    <button class="btn btn-lg btn-primary btn-block " ng-click="userLeavegroup(selectedData.groupId)"
-                            data-dismiss="modal">
-                        Leave Group
-                    </button>
-                    <button class="btn btn-lg btn-default btn-block " data-dismiss="modal">Cancel
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
+    <hr/>
+    <label>All Post In Class</label>
+    <div class="btn btn-primary" ng-click="getAllPostInClass(classId)">Lay post</div>
+    <div>
+        <ul>
+            <li ng-repeat="post in posts">
+                <a href="#"  editable-text="post.postContent"
+                   onaftersave="editPost(post)">{{post.postContent}} + {{post.postId}}</a>
+                <button class="btn btn-danger" ng-click = "deletePostClass(post)">Xóa</button>
+            </li>
+        </ul>
     </div>
 </div>
 
+<div class="row">
+    <div class="col-xs-3 text-center">
+        <button type="button" class="btn btn-default add" data-toggle="modal" data-target="#myModalCreat">
+            <i class="fa fa-plus-square" style="font-size: 10em;color: #28A2C7"></i>
+        </button>
+        <div id="myModalCreat" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-------------------------------
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Create Group</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin">
+                            <input ng-model="group.groupName" type="text" id="inputGroupname"
+                                   class="form-control" placeholder="Group" required autofocus>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block " ng-click="createGroup(classId)">Create
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
 
-<hr/>
-<div>
-    <label>Create New Post</label>
-    <input type="text" ng-model="newPostInClass">
-    <button type="submit" ng-click="createPost(classId)">Create</button>
-    {{newPostInClass1}}
-</div>
-<hr/>
-<label>All Post In Class</label>
-<div class="btn btn-primary" ng-click="getAllPostInClass(classId)">Lay post</div>
-<div>
-    <ul>
-        <li ng-repeat="post in posts">
-            <a href="#"  editable-text="post.postContent"
-               onaftersave="editPost(post)">{{post.postContent}} + {{post.postId}}</a>
-            <button class="btn btn-danger" ng-click = "deletePostClass(post)">Xóa</button>
-        </li>
-    </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-8 text-center nav"  style="padding-left: 7%">
+        <ul ng-repeat="group in groups" style="list-style: none" >
+            <li >
+                <a href="" class="black"><i class="fa fa-square-o " style="font-size: 8em"></i></a>
+                <p style="font-size: 15px;text-align: center">
+                    {{group.groupName}}  -id: {{group.groupId}}
+                </p>
+            </li>
+        </ul>
+
+    </div>
 </div>

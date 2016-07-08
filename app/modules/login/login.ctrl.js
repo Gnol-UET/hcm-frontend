@@ -2,6 +2,12 @@
     angular.module('login')
         .controller('LoginCtrl',['$scope','loginService','$rootScope','$location',
             function ($scope,loginService,$rootScope, $location) {
+
+                if (localStorage['User-Data']){
+                    $location.path('/classroom-main');
+                }else {
+                    $location.path('/login');
+                }
                 $scope.login = function () {
                     var request = {
                         username: $scope.login.username,

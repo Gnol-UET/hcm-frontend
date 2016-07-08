@@ -1,11 +1,11 @@
 (function () {
     angular.module('classroomDetail')
-        .controller('ClassroomDetailCtrl', ['postService', '$scope', 'classroomService', '$rootScope', '$location', '$route', '$routeParams', 'groupService',
-            function (postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
+        .controller('ClassroomDetailCtrl', ['initialData','postService', '$scope', 'classroomService', '$rootScope', '$location', '$route', '$routeParams', 'groupService',
+            function (initialData,postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
 
                 $scope.newPostInClass = '';
 
-                $scope.groups = [];
+                $scope.groups = initialData;
                 $scope.posts = [];
 
                 $scope.classId = $routeParams.classId;

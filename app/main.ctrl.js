@@ -8,8 +8,8 @@
                     console.log("main");
                     $rootScope.loggedIn = true;
                     $rootScope.username =  localStorage['username'];
+                    $location.path('/classroom-main');
                 }else {
-
                     console.log($rootScope.loggedIn);
                     $rootScope.loggedIn = false;
                     $location.path('/login');
