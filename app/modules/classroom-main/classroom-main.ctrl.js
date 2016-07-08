@@ -22,14 +22,17 @@
                     $location.path('/classroom/' + classId);
                 }
                 $scope.otherClassrooms =[]; //not enroll classes
-                classroomService.getNotEnrollClassrooms()
-                    .then(
-                        function (response) {
-                            $scope.otherClassrooms = response.data
-                        },
-                        function (error) {
-                            console.log("leave err");
-                        })
+                if($scope.role == 'STUDENT'){
+                    classroomService.getNotEnrollClassrooms()
+                        .then(
+                            function (response) {
+                                $scope.otherClassrooms = response.data
+                            },
+                            function (error) {
+                                console.log("leave err");
+                            })
+                }
+
                 $scope.addStudentToClass = function (classId) {
 
                     classroomService.addStudentToClass(classId)
