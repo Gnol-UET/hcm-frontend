@@ -6,6 +6,7 @@
                 $scope.newPostInClass = '';
 
                 $scope.groups = [];
+                $scope.posts = [];
 
                 $scope.classId = $routeParams.classId;
 
@@ -82,19 +83,7 @@
                                 console.log("leave err");
                             })
                 }
-                $scope.createPost = function (classId) {
-                    var request = {
-                        postContent: $scope.newPostInClass
-                    }
-                    postService.createPostInClass(classId, request)
-                        .then(function (response) {
-                            //
-                            console.log("Done");
-                        }, function (error, data) {
 
-                        })
-
-                }
                 $scope.editPost = function (post) {
                     console.log(post.postContent);
                     postService.editPost(post)
