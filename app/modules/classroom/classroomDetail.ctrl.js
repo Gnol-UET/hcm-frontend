@@ -4,7 +4,7 @@
             function (postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
 
                 $scope.newPostInClass = '';
-                $scope.postContent = null;
+                // $scope.postContent = null;
                 
                 $scope.groups = [];
 
@@ -56,9 +56,10 @@
                         .then(function (response) {
                             $scope.posts = response.data;
                         }, function (error, data) {
-
+                
                         })
                 }
+                
                 $scope.createPost = function (classId) {
                     var request = {
                         postContent: $scope.newPostInClass
@@ -95,15 +96,7 @@
                         })
 
                 }
-                $scope.getAllPostInClass = function (classId) {
-                    postService.getAllPostInClass(classId)
-                        .then(function (response) {
-                            $scope.posts = response.data;
-                            $scope.postId = response.data.postId;
-                        }, function (error, data) {
 
-                        })
-                };
 
                 $scope.editPost = function (post) {
                     console.log(post.postContent);
