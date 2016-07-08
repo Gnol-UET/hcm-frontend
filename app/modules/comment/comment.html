@@ -4,13 +4,16 @@
     <ul>
         <li>{{postContent}}</li>
         <li ng-repeat="comment in comments">
-            <p>{{comment.commentContent}}</p>
-            <p>{{comment.id}}</p>
+            <a href="#"  editable-text="comment.commentContent"
+               onaftersave="editComment(comment)">{{comment.commentContent}} + {{comment.id}}</a>
             <button ng-click="deleteComment(comment.id)">Xóa</button>
+            <button  ng-click="editComment(postId)">Edit</button>
+
         </li>
         <input ng-model="comment" type="text" placeholder="Comment" required autofocus>
         <br>
         <button  ng-click="addComment(postId)">Create</button>
+
     </ul>
 </div>
 

@@ -36,5 +36,24 @@
                             })
                 }
 
+                $scope.editComment = function (comment) {
+                    console.log(comment.commentContent);
+                    commentService.editComment(comment)
+                        .then(function (response) {
+                                console.log("edit succ");
+                            }, function (error, data) {
+                            }
+                        )
+                }
+
+                // $scope.editPost = function (post) {
+                //     console.log(post.postContent);
+                //     postService.editPost(post)
+                //         .then(function (response) {
+                //                 console.log("edit succ");
+                //             }, function (error, data) {
+                //             }
+                //         )
+                // }
             }])
 }())
