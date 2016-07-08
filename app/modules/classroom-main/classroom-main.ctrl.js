@@ -60,5 +60,19 @@
                                 console.log("error get detail");
                             })
                 }
+                $scope.addClassroom = function () {
+                    var request = {
+                        className: $scope.classroom.className
+                    };
+                    classroomService.addClassroom(request)
+                        .then(
+                            function (response) {
+                                $scope.classrooms.push(response.data);
+                                console.log(response);
+                            },
+                            function (error, data) {
+                                console.log("add class err");
+                            })
+                }
             }])
 }());
