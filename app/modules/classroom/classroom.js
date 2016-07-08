@@ -15,6 +15,7 @@ angular.module('classroom', ['ngRoute'])
                     }]
                 }
             })
+        
             // .when('/classroom/:classId',{
             //     templateUrl: 'modules/classroom/classroom_detail.html',
             //     controller: 'ClassroomDetailCtrl'
