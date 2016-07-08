@@ -27,9 +27,9 @@
                 data: opts
             })
         }
-        function editComment(commentId, opts) {
+        function editComment(opts) {
             return $http({
-                url: 'http://localhost:8080/comments/'+commentId , 
+                url: 'http://localhost:8080/comments/'+ opts.id ,
                 method: 'PUT',
                 data: opts
             })
