@@ -9,13 +9,16 @@ angular.module('myApp', [
     'view2',
     'login',
     'signup',
-    'xeditable',
-    'group',
     'classroom',
     'classroomDetail',
     'services',
     'group',
     'comment'
+    'services',
+    'group',
+    'xeditable',
+    'classroom-main'
+    
 ]).config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider.otherwise({redirectTo: '/login'});
 

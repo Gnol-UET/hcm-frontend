@@ -4,35 +4,23 @@
     </p>
     <br>
 
-    <button type="button" class="btn btn-default add" data-toggle="modal" data-target="#myModal">
-        <i class="fa fa-plus-square" style="font-size: 10em;color: #28A2C7"></i>
-    </button>
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Create Post</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-signin">
-                        <input ng-model="" type="text" id="titlePost" class="form-control"
-                               placeholder="titlePost" required autofocus>
-                        <input ng-model="" type="text" id="detailPost" class="form-control"
-                               placeholder="Description">
-                        <br>
-                        <button class="btn btn-lg btn-primary btn-block " ng-click="addPost()">Create</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-
-        </div>
+    <hr/>
+    <div>
+        <label>Create New Post</label>
+        <input type="text" ng-model="newPostInGroup">
+        <button type="submit" ng-click="createPost(groupId)">Create Post</button>
+    </div>
+    <hr/>
+    <label>All Post In Group</label>
+    <div class="btn btn-primary" ng-click="getAllPostInGroup(groupId)">Show All Post</div>
+    <div>
+        <ul>
+            <li ng-repeat="post in posts">
+                <a href="#" editable-text="post.postContent"
+                   onaftersave="editPost(post)">{{post.postContent}} + {{post.postId}}</a>
+                <button class="btn btn-danger" ng-click="deletePostGroup(post)">Xóa</button>
+            </li>
+        </ul>
     </div>
 
 </div>

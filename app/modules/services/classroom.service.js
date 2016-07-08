@@ -14,7 +14,8 @@
             addStudentToClass: addStudentToClass,
             deleteStudentFromClass : deleteStudentFromClass,
             getClassDetail: getClassDetail,
-            
+            getNotEnrollClassrooms :getNotEnrollClassrooms,
+            getMyClassrooms: getMyClassrooms
 
         }
         function getClassrooms() {
@@ -55,6 +56,17 @@
                 method: 'GET'
             })
         }
-
+        function getNotEnrollClassrooms() {
+            return $http({
+                url: 'http://localhost:8080/notEnrollClasses',
+                method: 'GET'
+            })
+        }
+        function getMyClassrooms() {
+            return $http({
+                url: 'http://localhost:8080/myclass',
+                method: 'GET'
+            })
+        }
     }
 }())
