@@ -22,7 +22,7 @@
                             $rootScope.username = localStorage['username'];
                             $rootScope.tokenAuth = localStorage['User-Data'];
 
-                            $location.path('/classroom');
+                            $location.path('/classroom-main');
                         },function (error, data) {
                             $scope.data = {title: 'failure'}
                         })

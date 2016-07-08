@@ -14,17 +14,19 @@
 <!--<button ng-click="deleteStudentFromClass(classroom.classId)">Leave this classroom</button>-->
 <!--<button ng-click="deleteClassroom(classroom.classId)">delete classroom</button>-->
 <!--</div>-->
+My classroom
+{{role}}
 
 <div>
 
-    <div class="row">
+    <div class="row" ng-if="!isStudent">
         <div class="col-xs-12">
             <h2 class="col-xs-push-1 col-xs-5" style="padding-bottom: 1%; color: #2e6da4;font-size: 80px">Select class</h2>
         </div>
 
     </div>
     <div class="col-xs-12">
-        <div class="col-xs-3 text-center">
+        <div class="col-xs-3 text-center" ng-if="!isStudent">
             <div >
                 <button type="button" class="btn btn-default add" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-plus-square" style="font-size: 10em;color: #28A2C7"></i>
@@ -55,15 +57,30 @@
 
                     </div>
                 </div>
-
-
-
-
-
             </div>
         </div>
         <div class="col-xs-7 nav">
             <ul ng-repeat="classroom in classrooms"  >
+                <li ng-click="joinIn(classroom.classId)"style= "list-style: none;padding-left: 7%">
+                    <a href="" class="black"><i class="fa fa-square-o " style="font-size: 8em"></i></a>
+                    <p style="font-size: 15px;text-align: center">
+                        {{classroom.className}}
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+<div ng-if="isStudent">
+    Other Classroom
+
+    <div class="col-xs-12">
+
+        <div class="col-xs-7 nav">
+            <ul ng-repeat="classroom in otherClassrooms"  >
                 <li ng-click="showClassDetail(classroom.classId)"style= "list-style: none;padding-left: 7%">
                     <a href="" class="black"><i class="fa fa-square-o " style="font-size: 8em"></i></a>
                     <p style="font-size: 15px;text-align: center">
@@ -76,7 +93,7 @@
             <p>class information</p>
             {{className}}
             {{classId}}
-            <button class="btn btn-primary" ng-click="deleteStudentFromClass(classId)" >Leave</button>
+            <!--<button class="btn btn-primary" ng-click="deleteStudentFromClass(classId)" >Leave</button>-->
             <button class="btn btn-primary" ng-click="addStudentToClass(classId)">Join</button>
 
         </div>
