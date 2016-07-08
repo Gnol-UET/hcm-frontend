@@ -7,5 +7,8 @@ angular.module('classroomDetail', ['ngRoute'])
                 templateUrl: 'modules/classroom/classroom_detail.html',
                 controller:  'ClassroomDetailCtrl'
             })
-
+            .when('/posts/:postId',{
+                templateUrl: 'modules/comment/comment.html',
+                controller:  'commentListCtrl'
+            })
     }]);
