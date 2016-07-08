@@ -4,8 +4,7 @@
             function (postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
 
                 $scope.newPostInClass = '';
-                // $scope.postContent = null;
-                
+
                 $scope.groups = [];
 
                 $scope.classId = $routeParams.classId;
@@ -56,10 +55,10 @@
                         .then(function (response) {
                             $scope.posts = response.data;
                         }, function (error, data) {
-                
+
                         })
                 }
-                
+
                 $scope.createPost = function (classId) {
                     var request = {
                         postContent: $scope.newPostInClass
@@ -74,7 +73,7 @@
 
                 }
                 $scope.userLeavegroup = function (group_id) {
-                    classroomService.userLeavegroup(group_id)
+                    groupService.userLeavegroup(group_id)
                         .then(
                             function (response) {
                                 console.log("leave success");
@@ -96,15 +95,12 @@
                         })
 
                 }
-
-
                 $scope.editPost = function (post) {
                     console.log(post.postContent);
                     postService.editPost(post)
                         .then(function (response) {
                                 console.log("edit succ");
                             }, function (error, data) {
-
                             }
                         )
                 }
@@ -113,7 +109,7 @@
                     postService.deletePost(post.postId)
                         .then(function (response) {
                             console.log("edit succ");
-                        },function (error,data) {
+                        }, function (error, data) {
 
                         })
                 }
