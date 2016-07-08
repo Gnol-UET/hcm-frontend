@@ -30,7 +30,7 @@
         function editComment(commentId, opts) {
             return $http({
                 url: 'http://localhost:8080/comments/'+commentId , 
-                method: 'POST',
+                method: 'PUT',
                 data: opts
             })
         }

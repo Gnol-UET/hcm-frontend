@@ -13,7 +13,7 @@ angular.module('myApp', [
     'classroomDetail',
     'services',
     'group',
-    'comment'
+    'comment',
     'services',
     'group',
     'xeditable',
