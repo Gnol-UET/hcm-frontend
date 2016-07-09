@@ -118,22 +118,57 @@ classroom_detail + {{classId}}
 </div>
 
 
-<label>All Post In Class</label>
+<!--<label>All Post In Class</label>-->
+<!--&lt;!&ndash;<div class="btn btn-primary" ng-click="getAllPostInClass(classId)">Lay post</div>&ndash;&gt;-->
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+<!--&lt;!&ndash;<ul>&ndash;&gt;-->
+<!--&lt;!&ndash;<li ng-repeat="post in posts">&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="#" editable-text="post.postContent" ng-model="postContent" value="post.postContent"&ndash;&gt;-->
+<!--&lt;!&ndash;onaftersave="editPost(post)">{{post.postContent}} + {{post.postId}}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;<button class="btn btn-danger" ng-click="deletePostClass(post)">Xóa</button>&ndash;&gt;-->
+<!--&lt;!&ndash;</li>&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<div>-->
+<!--<ul>-->
+<!--<li ng-repeat=" post in posts">-->
+<!--<button ng-click="routeToPost(post.postId)">{{post.postId}}</button>-->
+<!--<p> Author :{{post.userDTO1.username}}</p>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+
+<!--<label>All Post In Class</label>-->
 <!--<div class="btn btn-primary" ng-click="getAllPostInClass(classId)">Lay post</div>-->
 <!--<div>-->
 <!--<ul>-->
 <!--<li ng-repeat="post in posts">-->
-<!--<a href="#" editable-text="post.postContent" ng-model="postContent" value="post.postContent"-->
-<!--onaftersave="editPost(post)">{{post.postContent}} + {{post.postId}}</a>-->
-<!--<button class="btn btn-danger" ng-click="deletePostClass(post)">Xóa</button>-->
+<!--<button ng-click="showPostContent(post.postId)">{{post.postContent}}</button>-->
+<!--<button class="btn btn-danger" ng-click = "deletePostClass(post)">Xóa</button>-->
 <!--</li>-->
 <!--</ul>-->
+<!--<div class="col-xs-8 text-center nav"  style="padding-left: 7%">-->
+<!--<ul ng-repeat="group in groups" style="list-style: none" >-->
+<!--<li >-->
+<!--<a href="" class="black"><i class="fa fa-square-o " style="font-size: 8em"></i></a>-->
+<!--<p style="font-size: 15px;text-align: center">-->
+<!--{{group.groupName}}  -id: {{group.groupId}}-->
+<!--</p>-->
+<!--</li>-->
+<!--</ul>-->
+
 <!--</div>-->
+
+<hr/>
+<hr/>
+<label>All Post In Class</label>
+<div class="btn btn-primary" ng-click="getAllPostInClass(classId)">Lay post</div>
 <div>
     <ul>
-        <li ng-repeat=" post in posts">
-            <button ng-click="routeToPost(post.postId)">{{post.postId}}</button>
-            <p> Author :{{post.userDTO1.username}}</p>
+        <li ng-repeat="post in posts">
+            <button ng-click="showPostContent(post.postId)">{{post.postContent}}</button>
+            <button class="btn btn-danger" ng-click="deletePostClass(post)">Xóa</button>
         </li>
     </ul>
+</div>
 </div>

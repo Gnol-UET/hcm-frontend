@@ -17,5 +17,8 @@ angular.module('classroomDetail', ['ngRoute'])
                     }]
                 }
             })
-
+            .when('/posts/:postId',{
+                templateUrl: 'modules/comment/comment.html',
+                controller:  'commentListCtrl'
+            })
     }]);

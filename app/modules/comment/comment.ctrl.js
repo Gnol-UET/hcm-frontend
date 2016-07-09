@@ -1,7 +1,7 @@
 (function () {
     angular.module('comment')
-        .controller('commentListCtrl', ['$scope', 'commentService', '$rootScope', '$location', '$routeParams', '$route',
-            function ($scope, commentService, $rootScope, $location, $routeParams, $route) {
+        .controller('commentListCtrl', ['$scope', 'commentService', '$rootScope', '$location', '$routeParams', '$route', 'postService',
+            function ($scope, commentService, $rootScope, $location, $routeParams, $route, postService) {
 
                 $scope.postId = $routeParams.postId;
                 $scope.postContent;
@@ -19,10 +19,10 @@
                         function (error) {
                             console.log("error get detail")
                         }
-                }; 
+                };
 
                 $scope.addComment = function (postId) {
-                    $scope.commentDTO={
+                    $scope.commentDTO = {
                         commentContent: $scope.comment
                     }
                     commentService.addComment(postId, $scope.commentDTO)
@@ -45,15 +45,27 @@
                             }
                         )
                 }
+                $scope.editPost = function (post_id) {
+                    var request = {
+                        postContent: $scope.editContent
+                    }
+                    console.log(post_id);
+                    postService.editPost(post_id, request)
+                        .then(function (response) {
+                                console.log("edit succ");
+                            }, function (error, data) {
+                            }
+                        )
+                }
+                postService.showDetailPostInClass($scope.postId)
+                    .then(function (response) {
+                        $scope.postContent = response.data.postContent;
+                        $scope.postId = response.data.postId;
 
-                // $scope.editPost = function (post) {
-                //     console.log(post.postContent);
-                //     postService.editPost(post)
-                //         .then(function (response) {
-                //                 console.log("edit succ");
-                //             }, function (error, data) {
-                //             }
-                //         )
-                // }
+                    }),
+                    function (error) {
+                        console.log("error get detail");
+                    }
+                
             }])
 }())
