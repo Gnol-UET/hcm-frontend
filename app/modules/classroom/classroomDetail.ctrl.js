@@ -50,16 +50,14 @@
                 function setSelected(group) {
                     $scope.selectedData = group;
                 }
-
-                $scope.getAllPostInClass = function (classId) {
-                    postService.getAllPostInClass(classId)
+                
+                postService.getAllPostInClass($scope.classId)
                         .then(function (response) {
                             $scope.posts = response.data;
                         }, function (error, data) {
 
                         })
-                }
-
+                
                 $scope.createPost = function (classId) {
                     var request = {
                         postContent: $scope.newPostInClass

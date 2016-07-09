@@ -11,9 +11,9 @@
                 $scope.newPostInGroup = '';
                 $scope.posts = [];
 
-                $scope.getgroupDetail = function (groupId) {
-
-                    groupService.getgroupDetail(groupId)
+               
+                    
+                groupService.getgroupDetail($scope.groupId)
                         .then(function (response) {
                             $scope.groupName = response.data.groupName;
                             $scope.groupId = response.data.groupId;
@@ -21,7 +21,7 @@
                         function (error) {
                             console.log("error get detail")
                         }
-                }
+                
                 $scope.createPost = function (groupId) {
                     var request = {
                         postContent: $scope.newPostInGroup
@@ -34,12 +34,12 @@
                         })
 
                 }
-                $scope.getAllPostInGroup = function (groupId) {
-                    postService.getAllPostInGroup(groupId)
+                
+                postService.getAllPostInGroup($scope.groupId)
                         .then(function (response) {
                             $scope.posts = response.data;
                         })
-                }
+                
                 $scope.editPost = function (post) {
                     console.log(post.postContent);
                     postService.editPost(post)
