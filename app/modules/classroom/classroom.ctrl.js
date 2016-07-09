@@ -19,7 +19,6 @@
                     var request = {
                         className: $scope.classroom.className
                     };
-                    //   console.log("k"+request);
                     classroomService.addClassroom(request)
                         .then(
                             function (response) {
