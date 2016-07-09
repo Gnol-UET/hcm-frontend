@@ -1,7 +1,9 @@
 (function () {
     angular.module('group')
-        .controller('groupCtrl', ['$scope', 'groupService', '$rootScope', '$location', '$routeParams', '$route', 'postService',
-            function ($scope, groupService, $rootScope, $location, $routeParams, $route, postService) {
+        .controller('groupCtrl', ['$scope', 'groupService', '$rootScope',
+            '$location', '$routeParams', '$route', 'postService',
+            function ($scope, groupService, $rootScope, 
+                      $location, $routeParams, $route, postService) {
                 // if (localStorage['User-Data']){
                 //     $location.path('/classroom-main');
                 // }else {
@@ -11,9 +13,8 @@
                 $scope.newPostInGroup = '';
                 $scope.posts = [];
 
-                $scope.getgroupDetail = function (groupId) {
-
-                    groupService.getgroupDetail(groupId)
+                
+                groupService.getgroupDetail($scope.groupId)
                         .then(function (response) {
                             $scope.groupName = response.data.groupName;
                             $scope.groupId = response.data.groupId;
@@ -21,7 +22,7 @@
                         function (error) {
                             console.log("error get detail")
                         }
-                }
+                
                 $scope.createPost = function (groupId) {
                     var request = {
                         postContent: $scope.newPostInGroup
@@ -34,12 +35,12 @@
                         })
 
                 }
-                $scope.getAllPostInGroup = function (groupId) {
-                    postService.getAllPostInGroup(groupId)
+
+                postService.getAllPostInGroup($scope.groupId)
                         .then(function (response) {
                             $scope.posts = response.data;
                         })
-                }
+
                 $scope.editPost = function (post) {
                     console.log(post.postContent);
                     postService.editPost(post)

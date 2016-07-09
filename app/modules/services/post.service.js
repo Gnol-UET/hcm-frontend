@@ -53,9 +53,9 @@
             })
         }
 
-        function editPost(opts) {
+        function editPost(postId, opts) {
             return $http({
-                url: 'http://localhost:8080/posts/' + opts.postId,
+                url: 'http://localhost:8080/posts/' + postId,
                 data: opts,
                 method: 'PUT',
             })

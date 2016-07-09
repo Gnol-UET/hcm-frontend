@@ -1,12 +1,12 @@
 (function () {
     angular.module('classroomDetail')
-        .controller('ClassroomDetailCtrl', ['initialData','postService', '$scope', 'classroomService', '$rootScope', '$location', '$route', '$routeParams', 'groupService',
-            function (initialData,postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
+        .controller('ClassroomDetailCtrl', ['postService', '$scope', 'classroomService', '$rootScope', '$location', '$route', '$routeParams', 'groupService',
+            function (postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
 
                 $scope.newPostInClass = '';
+                $scope.editContent = '';
 
-                $scope.groups = initialData;
-                $scope.posts = [];
+                $scope.groups = [];
 
                 $scope.classId = $routeParams.classId;
 
@@ -14,15 +14,15 @@
 
                 $scope.setSelected = setSelected;
 
-                $scope.getGroups = function (classId) {
-                    console.log($scope.classId);
-                    groupService.showgroupInClass(classId)
-                        .then(function (response) {
-                            $scope.groups = response.data;
-                        }, function (error, data) {
 
-                        })
-                }
+                console.log($scope.classId);
+                groupService.showgroupInClass($scope.classId)
+                    .then(function (response) {
+                        $scope.groups = response.data;
+                    }, function (error, data) {
+
+                    })
+
                 $scope.createGroup = function (class_id) {
                     var request = {
                         groupName: $scope.group.groupName
@@ -51,14 +51,13 @@
                     $scope.selectedData = group;
                 }
 
-                $scope.getAllPostInClass = function (classId) {
-                    postService.getAllPostInClass(classId)
-                        .then(function (response) {
-                            $scope.posts = response.data;
-                        }, function (error, data) {
+                postService.getAllPostInClass($scope.classId)
+                    .then(function (response) {
+                        $scope.posts = response.data;
+                    }, function (error, data) {
 
-                        })
-                }
+                    })
+
 
                 $scope.createPost = function (classId) {
                     var request = {
@@ -83,16 +82,7 @@
                                 console.log("leave err");
                             })
                 }
-
-                $scope.editPost = function (post) {
-                    console.log(post.postContent);
-                    postService.editPost(post)
-                        .then(function (response) {
-                                console.log("edit succ");
-                            }, function (error, data) {
-                            }
-                        )
-                }
+                
                 $scope.deletePostClass = function (post) {
                     console.log(post.postId);
                     postService.deletePost(post.postId)
@@ -101,6 +91,13 @@
                         }, function (error, data) {
 
                         })
+                }
+                $scope.routeToPost = function (postId) {
+                    postService.showDetailPostInClass(postId)
+                        .then(function (response) {
+                            $location.path('/post/' + postId);
+                        })
+
                 }
 
                 $scope.showPostContent = function(postId){
