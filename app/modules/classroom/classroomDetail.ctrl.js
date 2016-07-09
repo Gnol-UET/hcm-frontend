@@ -4,6 +4,7 @@
             function (postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
 
                 $scope.newPostInClass = '';
+                $scope.editContent = '';
 
                 $scope.groups = [];
 
@@ -14,7 +15,7 @@
                 $scope.setSelected = setSelected;
 
 
-                    console.log($scope.classId);
+                console.log($scope.classId);
                 groupService.showgroupInClass($scope.classId)
                     .then(function (response) {
                         $scope.groups = response.data;
@@ -51,11 +52,11 @@
                 }
 
                 postService.getAllPostInClass($scope.classId)
-                        .then(function (response) {
-                            $scope.posts = response.data;
-                        }, function (error, data) {
+                    .then(function (response) {
+                        $scope.posts = response.data;
+                    }, function (error, data) {
 
-                        })
+                    })
 
 
                 $scope.createPost = function (classId) {
@@ -81,16 +82,7 @@
                                 console.log("leave err");
                             })
                 }
-
-                $scope.editPost = function (post) {
-                    console.log(post.postContent);
-                    postService.editPost(post)
-                        .then(function (response) {
-                                console.log("edit succ");
-                            }, function (error, data) {
-                            }
-                        )
-                }
+                
                 $scope.deletePostClass = function (post) {
                     console.log(post.postId);
                     postService.deletePost(post.postId)
@@ -99,6 +91,13 @@
                         }, function (error, data) {
 
                         })
+                }
+                $scope.routeToPost = function (postId) {
+                    postService.showDetailPostInClass(postId)
+                        .then(function (response) {
+                            $location.path('/post/' + postId);
+                        })
+
                 }
 
 

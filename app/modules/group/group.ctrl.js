@@ -1,7 +1,9 @@
 (function () {
     angular.module('group')
-        .controller('groupCtrl', ['$scope', 'groupService', '$rootScope', '$location', '$routeParams', '$route', 'postService',
-            function ($scope, groupService, $rootScope, $location, $routeParams, $route, postService) {
+        .controller('groupCtrl', ['$scope', 'groupService', '$rootScope',
+            '$location', '$routeParams', '$route', 'postService',
+            function ($scope, groupService, $rootScope, 
+                      $location, $routeParams, $route, postService) {
                 // if (localStorage['User-Data']){
                 //     $location.path('/classroom-main');
                 // }else {
