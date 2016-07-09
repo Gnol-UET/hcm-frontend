@@ -13,6 +13,7 @@
                 $scope.addUserTogroup = addUserTogroup;
 
                 $scope.setSelected = setSelected;
+                $scope.setPost = setPost;
 
 
                 console.log($scope.classId);
@@ -51,6 +52,10 @@
                     $scope.selectedData = group;
                 }
 
+                function setPost(post) {
+                    $scope.selecPost = post;
+                }
+
                 postService.getAllPostInClass($scope.classId)
                     .then(function (response) {
                         $scope.posts = response.data;
@@ -82,7 +87,7 @@
                                 console.log("leave err");
                             })
                 }
-                
+
                 $scope.deletePostClass = function (post) {
                     console.log(post.postId);
                     postService.deletePost(post.postId)
@@ -100,8 +105,20 @@
 
                 }
 
-                $scope.showPostContent = function(postId){
+                $scope.showPostContent = function (postId) {
                     $location.path('posts/' + postId);
+                }
+                $scope.editPost = function (postId) {
+                    var request = {
+                        postContent: $scope.editContent
+                    }
+                    console.log(postId);
+                    postService.editPost(postId, request)
+                        .then(function (response) {
+                                console.log("edit succ");
+                            }, function (error, data) {
+                            }
+                        )
                 }
             }])
 }())
