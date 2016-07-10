@@ -198,5 +198,8 @@
                             }
                         )
                 }
+                // $scope.joinInGroup = function (groupId) {
+                //     $location.path('')
+                // }
             }])
 }())

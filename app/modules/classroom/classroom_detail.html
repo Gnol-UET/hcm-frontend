@@ -170,8 +170,15 @@ classroom_detail + {{classId}}
         </div>
     </div>
 </div>
-My groups VAN DE O DAY!!!!
-<div dng-repeat="group in myGroups">
+My groups - (Group I'm in)
+<div ng-repeat="group in myGroups">
+  <div ng-click="joinInGroup(groupId)">
+      {{group.groupName}}
+  </div>
+
+</div>
+Other groups
+<div ng-repeat="group in otherGroups">
     {{group.groupName}}
 
 </div>
