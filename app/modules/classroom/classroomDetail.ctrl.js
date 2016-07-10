@@ -1,8 +1,8 @@
 (function () {
     angular.module('classroomDetail')
-        .controller('ClassroomDetailCtrl', ['initDataPost','postService', '$scope', 'classroomService', '$rootScope', '$location', '$route',
+        .controller('ClassroomDetailCtrl', ['initDataPost','postService','commentService', '$scope', 'classroomService', '$rootScope', '$location', '$route',
             '$routeParams', 'groupService',
-            function (initDataPost,postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
+            function (initDataPost,postService,commentService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
                 $scope.postss = initDataPost; //muon dung nut
                 $scope.newPostInClass = '';
                 $scope.editContent = '';
@@ -121,6 +121,54 @@
                             }
                         )
                 }
-               
+                $scope.getComment = function (postId) {
+
+                    commentService.getComment(postId)
+                        .then(function (response) {
+                            $scope.comments = response.data.commentDTOs;
+                            $scope.postContent = response.data.postContent;
+                            // $scope.comments.length = 0;
+                            // $scope.comments.splice.apply($scope.comments, [0, response.data.commentDTOs.length].concat(response.data.commentDTOs))
+                        }),
+                        function (error) {
+                            console.log("error get detail")
+                        }
+                }
+                $scope.addComment = function (postId) {
+                    $scope.commentDTO = {
+                        commentContent: $scope.comment
+                    }
+                    commentService.addComment(postId, $scope.commentDTO)
+                        .then(
+                            function (response) {
+                                $scope.comments.push(response.data);
+                                console.log(response);
+                            },
+                            function (error, data) {
+                                console.log("add comment err");
+                            })
+                }
+
+                $scope.editComment = function (comment) {
+                    console.log(comment.commentContent);
+                    commentService.editComment(comment)
+                        .then(function (response) {
+                                console.log("edit succ");
+                            }, function (error, data) {
+                            }
+                        )
+                }
+                $scope.editPost = function (post_id) {
+                    var request = {
+                        postContent: $scope.editContent
+                    }
+                    console.log(post_id);
+                    postService.editPost(post_id, request)
+                        .then(function (response) {
+                                console.log("edit succ");
+                            }, function (error, data) {
+                            }
+                        )
+                }
             }])
 }())
