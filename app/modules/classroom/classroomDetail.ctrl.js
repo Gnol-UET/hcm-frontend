@@ -198,8 +198,8 @@
                             }
                         )
                 }
-                // $scope.joinInGroup = function (groupId) {
-                //     $location.path('')
-                // }
+                $scope.joinInGroup = function (groupId) {
+                    $location.path('/group/' + group_id);
+                }
             }])
 }())
