@@ -9,7 +9,7 @@
                 $scope.groups = [];
 
                 $scope.classId = $routeParams.classId;
-
+                $scope.postVal = false;
                 $scope.addUserTogroup = addUserTogroup;
 
                 $scope.setSelected = setSelected;
@@ -97,7 +97,17 @@
 
                 }
                 $scope.showPostContent = function (postId) {
-                    $location.path('posts/' + postId);
+                    $scope.postVal=true;
+                    postService.showDetailPostInClass(postId)
+                        .then(
+                            function(response){
+                                $scope.postContent = response.data.postContent;
+                                $scope.postId=response.data.postId;
+                            },
+                            function (error) {
+                                console.log("error get post content");
+                            }
+                        )
                 }
                 $scope.editPost = function (postId) {
                     var request = {
@@ -111,5 +121,6 @@
                             }
                         )
                 }
+               
             }])
 }())

@@ -53,12 +53,18 @@ classroom_detail + {{classId}}
 <!--<div class="btn btn-primary" ng-click="getPost(classId)">Lay post</div>  &lt;!&ndash;muon dung nut&ndash;&gt;-->
 
 <div class="row">
-    <div class="col-xs-4" style=" width: 30%;height: 100%;overflow: auto;">
+    <div class="col-xs-4" style=" width: 30%;height: 15em;overflow: auto;">
         <ul>
-            <li ng-repeat="post in postss">
-                <a ng-click="showPostContent(post.postId)">    {{post.postContent}}    </a>
+            <li ng-repeat="post in postss" ng-click="showPostContent(post.postId)" style="width: 95%;overflow: hidden;text-overflow:ellipsis;border: 1px solid black; height: 50px">
+                <a href="" >    {{post.postContent}}    </a>
             </li>
         </ul>
+    </div>
+    <div class="col-xs-8 postContent" ng-if="postVal">
+        <p>Post information</p>
+        {{postContent}}
+        {{postId}}
+
     </div>
 </div>
 </div>
