@@ -87,11 +87,13 @@ classroom_detail + {{classId}}
         </div>
         <div class="col-xs-8 postContent" ng-if="postVal" style="background-color: #ecf1ef;height: 400px ;overflow: auto;">
             <p>Post information</p>
+            {{username}} :
             {{postContent}}   <a type="button" data-toggle="modal" data-target="#EditPostModal" class="glyphicon glyphicon-pencil"></a>
             {{postId}}
                 <ul>
                     <br>
                     <li ng-if="postVal"ng-repeat="comment in comments">
+                        {{comment.userDTO1.username}}
                         <a href="#" editable-text="comment.commentContent"
                            onaftersave="editComment(comment)">{{comment.commentContent}} + {{comment.id}}</a>
                     </li>
