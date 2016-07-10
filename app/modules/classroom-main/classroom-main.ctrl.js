@@ -4,14 +4,14 @@
             function ($scope, classroomService, $rootScope, $location, initialData, $route) {
 
                 $scope.classrooms = initialData.classRoomDTOs;
-                $scope.role = initialData.role;
+                $rootScope.role = initialData.role;
                 
                 function checkRole() {
                     $scope.isStudent = false;
-                    if ($scope.role == 'STUDENT'){
-                        $scope.isStudent = true;
+                    if ( $rootScope.role == 'STUDENT'){
+                        $rootScope.isStudent = true;
                     }else{
-                        $scope.isStudent = false;
+                        $rootScope.isStudent = false;
                     }
                    
                 }
@@ -22,7 +22,7 @@
                 }
                 
                 $scope.otherClassrooms =[]; //not enroll classes
-                if($scope.role == 'STUDENT'){
+                if( $rootScope.role == 'STUDENT'){
                     classroomService.getNotEnrollClassrooms()
                         .then(
                             function (response) {

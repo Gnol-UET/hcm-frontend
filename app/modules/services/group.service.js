@@ -71,9 +71,9 @@
             })
         }
         
-        function getMyGroup() {
+        function getMyGroup(classId) {
             return $http({
-                url: 'http://localhost:8080/myclass',
+                url:'http://localhost:8080/classes/'+classId +'/groups/EnrollGroup',
                 method: 'GET'
             })
         }

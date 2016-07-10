@@ -7,9 +7,9 @@
                 $scope.postContent;
                 $scope.comments;
                 // $scope.comments = [];
-                $scope.getComment = function (postId) {
+                // $scope.getComment = function (postId) {
 
-                    commentService.getComment(postId)
+                    commentService.getComment($scope.postId)
                         .then(function (response) {
                             $scope.comments = response.data.commentDTOs;
                             $scope.postContent = response.data.postContent;
@@ -19,7 +19,7 @@
                         function (error) {
                             console.log("error get detail")
                         }
-                };
+                // };
 
                 $scope.addComment = function (postId) {
                     $scope.commentDTO = {
