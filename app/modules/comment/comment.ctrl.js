@@ -45,12 +45,12 @@
                             }
                         )
                 }
-                $scope.editPost = function (post_id) {
+                $scope.editPost = function (postId) {
                     var request = {
                         postContent: $scope.editContent
                     }
-                    console.log(post_id);
-                    postService.editPost(post_id, request)
+                    console.log(postId);
+                    postService.editPost(postId, request)
                         .then(function (response) {
                                 console.log("edit succ");
                             }, function (error, data) {

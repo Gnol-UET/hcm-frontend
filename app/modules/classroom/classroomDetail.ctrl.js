@@ -7,7 +7,8 @@
                 $scope.newPostInClass = '';
                 $scope.editContent = '';
                 $scope.groups = [];
-
+                $scope.comments = [];
+                $scope.newCommentInClass={};
                 $scope.classId = $routeParams.classId;
                 $scope.postVal = false;
                 $scope.addUserTogroup = addUserTogroup;
@@ -57,6 +58,7 @@
                 }
                 
                 $scope.createPost = function (classId) {
+                    console.log($scope.newPostInClass);
                     var request = {
                         postContent: $scope.newPostInClass
                     }
@@ -134,9 +136,10 @@
                             console.log("error get detail")
                         }
                 }
-                $scope.addComment = function (postId) {
+                $scope.createComment = function (postId) {
+                    console.log($scope.newCommentInClass.commentContent);
                     $scope.commentDTO = {
-                        commentContent: $scope.comment
+                        commentContent: $scope.newCommentInClass.commentContent
                     }
                     commentService.addComment(postId, $scope.commentDTO)
                         .then(
@@ -148,6 +151,7 @@
                                 console.log("add comment err");
                             })
                 }
+                
 
                 $scope.editComment = function (comment) {
                     console.log(comment.commentContent);

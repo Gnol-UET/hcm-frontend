@@ -107,9 +107,10 @@ classroom_detail + {{classId}}
                     <button ng-click="editComment(postId)">Edit</button>
 
                 </li>
-                <input ng-model="comment" type="text" placeholder="Comment" required autofocus>
+
+                <input ng-model="newCommentInClass.commentContent" class="form-control" type="text" placeholder="Comment" required autofocus>
                 <br>
-                <button ng-click="addComment(postId)">Create</button>
+                <button ng-click="createComment(postId)">Create</button>
 
             </ul>
         </div>
