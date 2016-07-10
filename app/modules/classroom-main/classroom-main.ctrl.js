@@ -3,7 +3,6 @@
         .controller('classroomMainCtrl', ['$scope', 'classroomService', '$rootScope', '$location', 'initialData', '$route',
             function ($scope, classroomService, $rootScope, $location, initialData, $route) {
 
-                
                 $scope.classrooms = initialData.classRoomDTOs;
                 $scope.role = initialData.role;
                 
@@ -21,6 +20,7 @@
                 $scope.joinIn = function (classId) {
                     $location.path('/classroom/' + classId);
                 }
+                
                 $scope.otherClassrooms =[]; //not enroll classes
                 if($scope.role == 'STUDENT'){
                     classroomService.getNotEnrollClassrooms()
