@@ -138,6 +138,7 @@
                             function(response){
                                 $scope.postContent = response.data.postContent;
                                 $scope.postId=response.data.postId;
+                                $scope.username = response.data.userDTO1.username;
                             },
                             function (error) {
                                 console.log("error get post content");
