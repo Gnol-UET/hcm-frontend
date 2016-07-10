@@ -208,7 +208,7 @@
                         .then(function (response) {
                             $scope.groupName = response.data.groupName;
                             $scope.groupId = response.data.groupId;
-                    //        $scope.userDTO1s = response.data.userDTO1s;
+                            $scope.users = response.data.userDTO1s;
                             
                         }),
                         function (error) {
