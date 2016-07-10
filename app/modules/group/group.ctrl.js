@@ -4,11 +4,7 @@
             '$location', '$routeParams', '$route', 'postService', 'initDataPost', 'commentService',
             function ($scope, groupService, $rootScope,
                       $location, $routeParams, $route, postService, initDataPost, commentService) {
-                // if (localStorage['User-Data']){
-                //     $location.path('/classroom-main');
-                // }else {
-                //     $location.path('/login');
-                // }
+            
                 $scope.postss = initDataPost;
                 $scope.groupId = $routeParams.groupId;
                 $scope.newPostInGroup = '';
@@ -66,9 +62,7 @@
 
                         })
                 }
-                // $scope.showPostContent = function (postId) {
-                //     $location.path('posts/' + postId);
-                // }
+         
                 $scope.showPostContent = function (postId) {
                     $scope.postVal=true;
                     postService.showDetailPostInClass(postId)
@@ -76,6 +70,7 @@
                             function(response){
                                 $scope.postContent = response.data.postContent;
                                 $scope.postId=response.data.postId;
+                                $scope.username = response.data.userDTO1.username;
                             },
                             function (error) {
                                 console.log("error get post content");
@@ -85,8 +80,7 @@
                         .then(function (response) {
                             $scope.comments = response.data.commentDTOs;
                             $scope.postContent = response.data.postContent;
-                            // $scope.comments.length = 0;
-                            // $scope.comments.splice.apply($scope.comments, [0, response.data.commentDTOs.length].concat(response.data.commentDTOs))
+                           // $scope.username = response.data.commentDTOs.userDTO1.username;
                         }),
                         function (error) {
                             console.log("error get detail")
