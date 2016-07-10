@@ -110,6 +110,16 @@
                                 console.log("error get post content");
                             }
                         )
+                    commentService.getComment(postId)
+                        .then(function (response) {
+                            $scope.comments = response.data.commentDTOs;
+                            $scope.postContent = response.data.postContent;
+                            // $scope.comments.length = 0;
+                            // $scope.comments.splice.apply($scope.comments, [0, response.data.commentDTOs.length].concat(response.data.commentDTOs))
+                        }),
+                        function (error) {
+                            console.log("error get detail")
+                        }
                 }
                 $scope.editPost = function (postId) {
                     var request = {

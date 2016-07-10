@@ -64,9 +64,9 @@
 
                         })
                 }
-                $scope.showPostContent = function (postId) {
-                    $location.path('posts/' + postId);
-                }
+                // $scope.showPostContent = function (postId) {
+                //     $location.path('posts/' + postId);
+                // }
 
 
             }])

@@ -1,51 +1,51 @@
-<div>
-    <h1>List comments</h1>
-    <button id="clickShow" ng-click="getComment(postId)">List Comments</button>
-    <ul>
-        <li>{{postContent}}</li>
-        <button type="button" data-toggle="modal" data-target="#EditPostModal"> Edit Post
-            <!--<i class="fa fa-plus-square" style="font-size: 10em;color: #28A2C7"></i>-->
-        </button>
-        <div id="EditPostModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+<!--<div>-->
+    <!--&lt;!&ndash;<h1>List comments</h1>&ndash;&gt;-->
+    <!--&lt;!&ndash;<button id="clickShow" ng-click="getComment(postId)">List Comments</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li>{{postContent}}</li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<button type="button" data-toggle="modal" data-target="#EditPostModal"> Edit Post&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<i class="fa fa-plus-square" style="font-size: 10em;color: #28A2C7"></i>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div id="EditPostModal" class="modal fade" role="dialog">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="modal-dialog">&ndash;&gt;-->
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="myModal">&times;</button>
-                        <h4 class="modal-title">Edit Classroom</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-signin">
-                            <p class="form-control">{{postContent}}</p>
-                            <input ng-model="editContent" type="text"
-                                   class="form-control" placeholder="Content Post" required autofocus>
-                            <br>
-                            <button class="btn btn-lg btn-primary btn-block " data-dismiss="myModal"
-                                    ng-click="editPost(postId)">Save
-                            </button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
+                <!--&lt;!&ndash;&lt;!&ndash; Modal content&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="modal-content">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button type="button" class="close" data-dismiss="myModal">&times;</button>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<h4 class="modal-title">Edit Classroom</h4>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="modal-body">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<form class="form-signin">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<p class="form-control">{{postContent}}</p>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<input ng-model="editContent" type="text"&ndash;&gt;-->
+                                   <!--&lt;!&ndash;class="form-control" placeholder="Content Post" required autofocus>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<button class="btn btn-lg btn-primary btn-block " data-dismiss="myModal"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;ng-click="editPost(postId)">Save&ndash;&gt;-->
+                            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</form>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="modal-footer">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<br>-->
 
-        <li ng-repeat="comment in comments">
-            <a href="#" editable-text="comment.commentContent"
-               onaftersave="editComment(comment)">{{comment.commentContent}} + {{comment.id}}</a>
-            <button ng-click="deleteComment(comment.id)">Xóa</button>
-            <button ng-click="editComment(postId)">Edit</button>
+        <!--<li ng-repeat="comment in comments">-->
+            <!--<a href="#" editable-text="comment.commentContent"-->
+               <!--onaftersave="editComment(comment)">{{comment.commentContent}} + {{comment.id}}</a>-->
+            <!--<button ng-click="deleteComment(comment.id)">Xóa</button>-->
+            <!--<button ng-click="editComment(postId)">Edit</button>-->
 
-        </li>
-        <input ng-model="comment" type="text" placeholder="Comment" required autofocus>
-        <br>
-        <button ng-click="addComment(postId)">Create</button>
+        <!--</li>-->
+        <!--<input ng-model="comment" type="text" placeholder="Comment" required autofocus>-->
+        <!--<br>-->
+        <!--<button ng-click="addComment(postId)">Create</button>-->
 
-    </ul>
-</div>
+    <!--</ul>-->
+<!--</div>-->
 
 
