@@ -1,18 +1,20 @@
 (function () {
     angular.module('group')
         .controller('groupCtrl', ['$scope', 'groupService', '$rootScope',
-            '$location', '$routeParams', '$route', 'postService',
+            '$location', '$routeParams', '$route', 'postService', 'initDataPost', 'commentService',
             function ($scope, groupService, $rootScope,
-                      $location, $routeParams, $route, postService) {
+                      $location, $routeParams, $route, postService, initDataPost, commentService) {
                 // if (localStorage['User-Data']){
                 //     $location.path('/classroom-main');
                 // }else {
                 //     $location.path('/login');
                 // }
+                $scope.postss = initDataPost;
                 $scope.groupId = $routeParams.groupId;
                 $scope.newPostInGroup = '';
                 $scope.posts = [];
-
+                $scope.comments = [];
+                $scope.newCommentInGroup={};
 
                 groupService.getgroupDetail($scope.groupId)
                     .then(function (response) {
@@ -67,7 +69,53 @@
                 // $scope.showPostContent = function (postId) {
                 //     $location.path('posts/' + postId);
                 // }
-
+                $scope.showPostContent = function (postId) {
+                    $scope.postVal=true;
+                    postService.showDetailPostInClass(postId)
+                        .then(
+                            function(response){
+                                $scope.postContent = response.data.postContent;
+                                $scope.postId=response.data.postId;
+                            },
+                            function (error) {
+                                console.log("error get post content");
+                            }
+                        )
+                    commentService.getComment(postId)
+                        .then(function (response) {
+                            $scope.comments = response.data.commentDTOs;
+                            $scope.postContent = response.data.postContent;
+                            // $scope.comments.length = 0;
+                            // $scope.comments.splice.apply($scope.comments, [0, response.data.commentDTOs.length].concat(response.data.commentDTOs))
+                        }),
+                        function (error) {
+                            console.log("error get detail")
+                        }
+                }
+                $scope.createComment = function (postId) {
+                    console.log($scope.newCommentInGroup.commentContent);
+                    $scope.commentDTO = {
+                        commentContent: $scope.newCommentInGroup.commentContent
+                    }
+                    commentService.addComment(postId, $scope.commentDTO)
+                        .then(
+                            function (response) {
+                                $scope.comments.push(response.data);
+                                console.log(response);
+                            },
+                            function (error, data) {
+                                console.log("add comment err");
+                            })
+                }
+                $scope.editComment = function (comment) {
+                    console.log(comment.commentContent);
+                    commentService.editComment(comment)
+                        .then(function (response) {
+                                console.log("edit succ");
+                            }, function (error, data) {
+                            }
+                        )
+                }
 
             }])
 }())
