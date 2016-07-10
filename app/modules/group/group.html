@@ -1,4 +1,4 @@
-<div>
+<div >
     <p>{{groupName}} {{groupId}}
     </p>
 
@@ -6,93 +6,95 @@
 
     <hr/>
 
-    <button type="button" data-toggle="modal" data-target="#CreatPostModal"> Create Post in GROUP
-    </button>
-    <hr/>
-    <div id="CreatPostModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="myModal">&times;</button>
-                    <h4 class="modal-title">Create post</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-signin">
-                        <input ng-model="newPostInGroup" type="text"
-                               class="form-control" placeholder="Content Post" required autofocus>
-                        <br>
-                        <button class="btn btn-lg btn-primary btn-block " data-dismiss="myModal"
-                                ng-click="createPost(groupId)">Create Post
-                        </button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <label>All Post In Group</label>
-
 </div>
 
+<div class="container">
+    <div class="row">
+        <button type="button" data-toggle="modal" data-target="#CreatPostModal" class="btn btn-success"> Create Post in GROUP
+        </button>
+        <hr/>
+        <div id="CreatPostModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-<div class="row">
-    <div class="col-xs-4" style=" width: 30%;height: 15em;overflow: auto;">
-        <ul>
-            <li ng-repeat="post in postss" ng-click="showPostContent(post.postId)" style="width: 95%;overflow: hidden;text-overflow:ellipsis;border: 1px solid black; height: 50px">
-                <a href="" >    {{post.postContent}}    </a>
-            </li>
-        </ul>
-    </div>
-    <div id="EditPostModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="myModal">&times;</button>
-                    <h4 class="modal-title">Edit post</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-signin">
-                        <p class="form-control">{{postContent}}</p>
-                        <input ng-model="editContent" type="text"
-                               class="form-control" placeholder="{{postContent}}" required autofocus>
-                        <br>
-                        <button class="btn btn-lg btn-primary btn-block " data-dismiss="myModal"
-                                ng-click="editPost(postId)">Save
-                        </button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="myModal">&times;</button>
+                        <h4 class="modal-title">Create post</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin">
+                            <input ng-model="newPostInGroup" type="text"
+                                   class="form-control" placeholder="Content Post" required autofocus>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block " data-dismiss="myModal"
+                                    ng-click="createPost(groupId)">Create Post
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        <label>All Post In Group</label>
     </div>
-    <div class="col-xs-8 postContent" ng-if="postVal" style="background-color: greenyellow">
-        <p>Post information</p>
-        {{username}} :
-        {{postContent}}   <a type="button" data-toggle="modal" data-target="#EditPostModal" class="glyphicon glyphicon-pencil"></a>
-        {{postId}}
+    <div class="row">
+        <div class="col-xs-4" style=" width: 30%;height: 15em;overflow: auto;background-color: #fffdf5; border-radius: 30px;border: 4px solid #d1d1d1;margin-right: 20px">
+            <ul>
+                <li ng-repeat="post in postss" ng-click="showPostContent(post.postId)" style="width: 95%;overflow: hidden;text-overflow:ellipsis  ; height: 50px; margin-top: 5px">
+                    <a href="" >    {{post.postContent}}    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="EditPostModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-        <ul>
-            <br>
-            <li ng-if="postVal"ng-repeat="comment in comments">
-                {{comment.userDTO1.username}}
-                <a href="#" editable-text="comment.commentContent"
-                   onaftersave="editComment(comment)">{{comment.commentContent}} + {{comment.id}}</a>
-            </li>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="myModal">&times;</button>
+                        <h4 class="modal-title">Edit post</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin">
+                            <p class="form-control">{{postContent}}</p>
+                            <input ng-model="editContent" type="text"
+                                   class="form-control" placeholder="{{postContent}}" required autofocus>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block " data-dismiss="myModal"
+                                    ng-click="editPost(postId)">Save
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8 postContent" ng-if="postVal" style="background-color: #fffdf5; border-radius: 15px 50px;border: 4px solid #d1d1d1">
+            <p>Post information</p>
+            {{username}} :
+            {{postContent}}   <a type="button" data-toggle="modal" data-target="#EditPostModal" class="glyphicon glyphicon-pencil"></a>
+            {{postId}}
 
-            <input ng-model="newCommentInGroup.commentContent" class="form-control" type="text" placeholder="Comment" required autofocus>
-            <br>
-            <button ng-click="createComment(postId)">Create</button>
+            <ul>
+                <br>
+                <li ng-if="postVal"ng-repeat="comment in comments">
+                    {{comment.userDTO1.username}}
+                    <a href="#" editable-text="comment.commentContent"
+                       onaftersave="editComment(comment)">{{comment.commentContent}} + {{comment.id}}</a>
+                </li>
 
-        </ul>
+                <input ng-model="newCommentInGroup.commentContent" class="form-control" type="text" placeholder="Comment" required autofocus>
+                <br>
+                <button class="btn btn-primary" style="margin-left: 80%; margin-bottom: 10px " ng-click="createComment(postId)">Create</button>
+
+            </ul>
+        </div>
     </div>
 </div>
