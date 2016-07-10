@@ -55,19 +55,7 @@
                 function setPost(post) {
                     $scope.selecPost = post;
                 }
-
-               
-
-
-                $scope.getPost = function (classId) {
-                    postService.getAllPostInClass($scope.classId)
-                        .then(function (response) {
-                            $scope.postss = response.data;
-                        }, function (error, data) {
-
-                        })
-
-                } 
+                
                 $scope.createPost = function (classId) {
                     var request = {
                         postContent: $scope.newPostInClass
@@ -108,7 +96,6 @@
                         })
 
                 }
-
                 $scope.showPostContent = function (postId) {
                     $location.path('posts/' + postId);
                 }

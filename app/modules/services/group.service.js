@@ -16,7 +16,9 @@
             addUserTogroup: addUserTogroup,
             userLeavegroup: userLeavegroup,
             getgroupDetail: getgroupDetail,
-            editgroup: editgroup
+            editgroup: editgroup,
+            getMyGroup: getMyGroup,
+            getNotEnrollGroup:getNotEnrollGroup
         }
         function creategroup(class_id, opts) {
             return $http({
@@ -66,6 +68,20 @@
             return $http({
                 url: 'http://localhost:8080/groups/' + group_id,
                 method: 'PUT'
+            })
+        }
+        
+        function getMyGroup() {
+            return $http({
+                url: 'http://localhost:8080/myclass',
+                method: 'GET'
+            })
+        }
+        
+        function getNotEnrollGroup(classId) {
+            return $http({
+                url: 'http://localhost:8080/classes/'+classId +'/groups/notEnrollGroup',
+                method: 'GET'
             })
         }
     }
