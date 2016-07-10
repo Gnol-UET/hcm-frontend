@@ -10,15 +10,15 @@
         <input type="text" ng-model="newPostInGroup">
         <button type="submit" ng-click="createPost(groupId)">Create Post</button>
     </div>
+
     <hr/>
     <label>All Post In Group</label>
     <!--<div class="btn btn-primary" ng-click="getAllPostInGroup(groupId)">Show All Post</div>-->
     <div>
         <ul>
             <li ng-repeat="post in posts">
-                <a href="#" editable-text="post.postContent"
-                   onaftersave="editPost(post)">{{post.postContent}} + {{post.postId}}</a>
-                <button class="btn btn-danger" ng-click="deletePostGroup(post)">Xóa</button>
+                <button ng-click="showPostContent(post.postId)">{{post.postContent}} + {{post.postId}}</button>
+                <button class="btn btn-danger" ng-click="deletePostClass(post)">Xóa</button>
             </li>
         </ul>
     </div>
