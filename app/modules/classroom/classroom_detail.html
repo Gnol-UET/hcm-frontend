@@ -170,17 +170,19 @@ classroom_detail + {{classId}}
         </div>
     </div>
 </div>
-My groups - (Group I'm in)
+My groups - (Group I'm in) - click to go to MY group
 <div ng-repeat="group in myGroups">
-  <div ng-click="joinInGroup(groupId)">
-      {{group.groupName}}
+  <div ng-click="joinInGroup(group.groupId)">
+      {{group.groupName}}-
+      {{group.groupId}}
   </div>
 
 </div>
-Other groups
+Other groups - click to show Group detail - and join Modal
 <div ng-repeat="group in otherGroups">
     <div>
         {{group.groupName}}
+        {{group.groupId}}
     </div>
 <!--show modal add student to group-->
 </div>
