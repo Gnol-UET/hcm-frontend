@@ -7,6 +7,8 @@
                 $scope.newPostInClass = '';
                 $scope.editContent = '';
                 $scope.groups = [];
+                $scope.otherGroups=[];
+                $scope.myGroups=[];
                 $scope.comments = [];
                 $scope.newCommentInClass={};
                 $scope.classId = $routeParams.classId;
@@ -16,29 +18,60 @@
                 $scope.setSelected = setSelected;
                 $scope.setPost = setPost;
 
+                function checkRole() {
+                    $scope.isStudent = false;
+                    if ( localStorage['role'] == 'STUDENT'){
+                        $scope.isStudent = true;
+                    }else{
+                        $scope.isStudent = false;
+                    }
+                }
+                checkRole();
 
                 console.log($scope.classId);
-                groupService.showgroupInClass($scope.classId)
-                    .then(function (response) {
-                        $scope.groups = response.data;
-                    }, function (error, data) {
+                if (!$scope.isStudent) {
+                    groupService.showgroupInClass($scope.classId)
+                        .then(function (response) {
+                            $scope.groups = response.data;
+                        }, function (error, data) {
 
-                    })
-
-                $scope.createGroup = function (class_id) {
-                    var request = {
-                        groupName: $scope.group.groupName
-                    };
-                    groupService.creategroup(class_id, request)
-                        .then(
-                            function (response) {
-                                $scope.groups.push(response.data);
-                                console.log(response);
-                            },
-                            function (error, data) {
-                                console.log("add group err");
-                            })
+                        })
                 }
+                if (localStorage['role'] == 'STUDENT'){
+                    groupService.getMyGroup($scope.classId)
+                        .then(function (response) {
+                            $scope.myGroups = response.data;
+                            console.log(response.data);
+                        }, function (error, data) {
+
+                        })
+                }
+                if (localStorage['role'] == 'STUDENT'){
+                    groupService.getNotEnrollGroup($scope.classId)
+                        .then(function (response) {
+                            $scope.otherGroups = response.data;
+                        }, function (error, data) {
+
+                        })
+                }
+                if (!$scope.isStudent){
+                    $scope.createGroup = function (class_id) {
+                        var request = {
+                            groupName: $scope.group.groupName
+                        };
+                        groupService.creategroup(class_id, request)
+                            .then(
+                                function (response) {
+                                    $scope.groups.push(response.data);
+                                    console.log(response);
+                                },
+                                function (error, data) {
+                                    console.log("add group err");
+                                })
+                    }
+                }
+
+
                 function addUserTogroup(group_id) {
                     groupService.addUserTogroup(group_id)
                         .then(
@@ -111,42 +144,21 @@
                             }
                         )
                     commentService.getComment(postId)
-                        .then(function (response) {
-                            $scope.comments = response.data.commentDTOs;
-                            $scope.postContent = response.data.postContent;
-                            // $scope.comments.length = 0;
-                            // $scope.comments.splice.apply($scope.comments, [0, response.data.commentDTOs.length].concat(response.data.commentDTOs))
-                        }),
-                        function (error) {
-                            console.log("error get detail")
-                        }
-                }
-                $scope.editPost = function (postId) {
-                    var request = {
-                        postContent: $scope.editContent
-                    }
-                    console.log(postId);
-                    postService.editPost(postId, request)
-                        .then(function (response) {
-                                console.log("edit succ");
-                            }, function (error, data) {
+                            .then(function (response) {
+                                $scope.comments = response.data.commentDTOs;
+                                $scope.postContent = response.data.postContent;
+                                // $scope.comments.length = 0;
+                                // $scope.comments.splice.apply($scope.comments, [0, response.data.commentDTOs.length].concat(response.data.commentDTOs))
+                            }),
+                            function (error) {
+                                console.log("error get detail")
                             }
-                        )
-                }
-                $scope.getComment = function (postId) {
 
-                    commentService.getComment(postId)
-                        .then(function (response) {
-                            $scope.comments = response.data.commentDTOs;
-                            $scope.postContent = response.data.postContent;
-                            // $scope.comments.length = 0;
-                            // $scope.comments.splice.apply($scope.comments, [0, response.data.commentDTOs.length].concat(response.data.commentDTOs))
-                        }),
-                        function (error) {
-                            console.log("error get detail")
-                        }
                 }
+
+
                 $scope.createComment = function (postId) {
+                    $scope.postVal=true;
                     console.log($scope.newCommentInClass.commentContent);
                     $scope.commentDTO = {
                         commentContent: $scope.newCommentInClass.commentContent
@@ -164,6 +176,7 @@
                 
 
                 $scope.editComment = function (comment) {
+                    console.log(comment);
                     console.log(comment.commentContent);
                     commentService.editComment(comment)
                         .then(function (response) {
@@ -177,12 +190,30 @@
                         postContent: $scope.editContent
                     }
                     console.log(post_id);
+                    console.log(request);
                     postService.editPost(post_id, request)
                         .then(function (response) {
                                 console.log("edit succ");
                             }, function (error, data) {
                             }
                         )
+                }
+                $scope.joinInGroup = function (groupId){
+                    $location.path('/group/' + groupId);
+                }
+                //show group detail
+                $scope.showGroupDetail = function (groupId) {
+                    $scope.detailVal = true;
+                    groupService.getgroupDetail(groupId)
+                        .then(function (response) {
+                            $scope.groupName = response.data.groupName;
+                            $scope.groupId = response.data.groupId;
+                            $scope.users = response.data.userDTO1s;
+                            
+                        }),
+                        function (error) {
+                            console.log("error get detail")
+                        }
                 }
             }])
 }())

@@ -26,7 +26,7 @@ classroom_detail + {{classId}}
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="myModal">&times;</button>
                 <h4 class="modal-title">Create Classroom</h4>
             </div>
             <div class="modal-body">
@@ -34,7 +34,7 @@ classroom_detail + {{classId}}
                     <input ng-model="newPostInClass" type="text"
                            class="form-control" placeholder="Content Post" required autofocus>
                     <br>
-                    <button class="btn btn-lg btn-primary btn-block " data-dismiss="modal"
+                    <button class="btn btn-lg btn-primary btn-block " data-dismiss="myModal"
                             ng-click="createPost(classId)">Create Post
                     </button>
                 </form>
@@ -60,53 +60,41 @@ classroom_detail + {{classId}}
             </li>
         </ul>
     </div>
+    <div id="EditPostModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-    <div class="col-xs-8 postContent" ng-if="postVal">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="myModal">&times;</button>
+                    <h4 class="modal-title">Edit Classroom</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-signin">
+                        <p class="form-control">{{postContent}}</p>
+                        <input ng-model="editContent" type="text"
+                               class="form-control" placeholder="{{postContent}}" required autofocus>
+                        <br>
+                        <button class="btn btn-lg btn-primary btn-block " data-dismiss="myModal"
+                                ng-click="editPost(postId)">Save
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-8 postContent" ng-if="postVal" style="background-color: greenyellow">
         <p>Post information</p>
-        {{postContent}}
+        {{postContent}}   <a type="button" data-toggle="modal" data-target="#EditPostModal" class="glyphicon glyphicon-pencil"></a>
         {{postId}}
-        <div>
-            <!--<h1>List comments</h1>-->
-            <!--<button id="clickShow" ng-click="getComment(postId)">List Comments</button>-->
-            <!--<ul>-->
-                <!--<li>{{postContent}}</li>-->
-                <!--<button type="button" data-toggle="modal" data-target="#EditPostModal"> Edit Post-->
-                    <!--&lt;!&ndash;<i class="fa fa-plus-square" style="font-size: 10em;color: #28A2C7"></i>&ndash;&gt;-->
-                <!--</button>-->
-                <!--<div id="EditPostModal" class="modal fade" role="dialog">-->
-                    <!--<div class="modal-dialog">-->
-
-                        <!--&lt;!&ndash; Modal content&ndash;&gt;-->
-                        <!--<div class="modal-content">-->
-                            <!--<div class="modal-header">-->
-                                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
-                                <!--<h4 class="modal-title">Edit Classroom</h4>-->
-                            <!--</div>-->
-                            <!--<div class="modal-body">-->
-                                <!--<form class="form-signin">-->
-                                    <!--<p class="form-control">{{postContent}}</p>-->
-                                    <!--<input ng-model="editContent" type="text"-->
-                                           <!--class="form-control" placeholder="Content Post" required autofocus>-->
-                                    <!--<br>-->
-                                    <!--<button class="btn btn-lg btn-primary btn-block " data-dismiss="modal"-->
-                                            <!--ng-click="editPost(postId)">Save-->
-                                    <!--</button>-->
-                                <!--</form>-->
-                            <!--</div>-->
-                            <!--<div class="modal-footer">-->
-                                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<br>-->
-
-                <li ng-repeat="comment in comments">
+            <ul>
+                <br>
+                <li ng-if="postVal"ng-repeat="comment in comments">
                     <a href="#" editable-text="comment.commentContent"
                        onaftersave="editComment(comment)">{{comment.commentContent}} + {{comment.id}}</a>
-                    <button ng-click="deleteComment(comment.id)">Xóa</button>
-                    <button ng-click="editComment(postId)">Edit</button>
-
                 </li>
 
                 <input ng-model="newCommentInClass.commentContent" class="form-control" type="text" placeholder="Comment" required autofocus>
@@ -114,17 +102,13 @@ classroom_detail + {{classId}}
                 <button ng-click="createComment(postId)">Create</button>
 
             </ul>
-        </div>
-
-
-
     </div>
 </div>
 </div>
 <br>
 <hr/>
 <div>
-    <button data-toggle="modal" data-target="#myModalCreat">Create Group</button>
+    <button ng-if="!isStudent"data-toggle="modal" data-target="#myModalCreat">Create Group</button>
 
     <div id="myModalCreat" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -152,9 +136,33 @@ classroom_detail + {{classId}}
         </div>
     </div>
 </div>
-
+<!--teacher show all-->
 <div ng-repeat="group in groups">
+    <div ng-click="showGroupDetail(group.groupId)">
+      {{group.groupName}}
+    </div>
+</div>
+<!--chỗ này là để hiện detail khi click vào-->
+<div  ng-if="detailVal">
+    {{groupName}}
+    <div ng-repeat="user in users">
+        {{user.username}}
+    </div>
+</div>
+My groups - (Group I'm in) - click to go to MY group
+<div ng-repeat="group in myGroups">
+  <div ng-click="joinInGroup(group.groupId)">
+      {{group.groupName}}-
+      {{group.groupId}}
+  </div>
 
+</div>
+Other groups - click to show Group detail - and join Modal
+<div ng-repeat="group in otherGroups">
+    <div>
+        {{group.groupName}}
+        {{group.groupId}}
+    </div>
     <button data-toggle="modal" data-target="#myModal" ng-click="setSelected(group)"> {{group.groupName}} +
         {{group.groupId}}
     </button>
@@ -185,5 +193,6 @@ classroom_detail + {{classId}}
 
         </div>
     </div>
+<!--show modal add student to group-->
 </div>
 
