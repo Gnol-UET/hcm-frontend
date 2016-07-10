@@ -1,11 +1,11 @@
 (function () {
     angular.module('classroomDetail')
-        .controller('ClassroomDetailCtrl', ['postService', '$scope', 'classroomService', '$rootScope', '$location', '$route', '$routeParams', 'groupService',
-            function (postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
-
+        .controller('ClassroomDetailCtrl', ['initDataPost','postService', '$scope', 'classroomService', '$rootScope', '$location', '$route',
+            '$routeParams', 'groupService',
+            function (initDataPost,postService, $scope, classroomService, $rootScope, $location, $route, $routeParams, groupService) {
+                $scope.postss = initDataPost; //muon dung nut
                 $scope.newPostInClass = '';
                 $scope.editContent = '';
-
                 $scope.groups = [];
 
                 $scope.classId = $routeParams.classId;
@@ -56,21 +56,25 @@
                     $scope.selecPost = post;
                 }
 
-                postService.getAllPostInClass($scope.classId)
-                    .then(function (response) {
-                        $scope.posts = response.data;
-                    }, function (error, data) {
-
-                    })
+               
 
 
+                $scope.getPost = function (classId) {
+                    postService.getAllPostInClass($scope.classId)
+                        .then(function (response) {
+                            $scope.postss = response.data;
+                        }, function (error, data) {
+
+                        })
+
+                } 
                 $scope.createPost = function (classId) {
                     var request = {
                         postContent: $scope.newPostInClass
                     }
                     postService.createPostInClass(classId, request)
                         .then(function (response) {
-                            //
+                            $scope.postss.push(response.data);
                             console.log("Done");
                         }, function (error, data) {
 

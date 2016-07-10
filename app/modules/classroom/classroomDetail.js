@@ -14,8 +14,19 @@ angular.module('classroomDetail', ['ngRoute'])
                             .then(function(response){
                                 return response.data;
                             });
-                    }]
+                    }],
+                    initDataPost:['postService',"$route", function (postService,$route) {
+                        var paramValue = $route.current.params.classId;
+                        return postService.getAllPostInClass(paramValue)
+                            .then(function(response){
+                                return response.data;
+                            });
+                    }
+
+                    ]
+
                 }
+                
             })
             .when('/posts/:postId',{
                 templateUrl: 'modules/comment/comment.html',
