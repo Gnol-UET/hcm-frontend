@@ -201,5 +201,19 @@
                 $scope.joinInGroup = function (groupId){
                     $location.path('/group/' + groupId);
                 }
+                //show group detail
+                $scope.showGroupDetail = function (groupId) {
+                    $scope.detailVal = true;
+                    groupService.getgroupDetail(groupId)
+                        .then(function (response) {
+                            $scope.groupName = response.data.groupName;
+                            $scope.groupId = response.data.groupId;
+                    //        $scope.userDTO1s = response.data.userDTO1s;
+                            
+                        }),
+                        function (error) {
+                            console.log("error get detail")
+                        }
+                }
             }])
 }())

@@ -138,7 +138,31 @@ classroom_detail + {{classId}}
 </div>
 <!--teacher show all-->
 <div ng-repeat="group in groups">
+    <div ng-click="showGroupDetail(group.groupId)">
+      {{group.groupName}}
+    </div>
+</div>
+<!--chỗ này là để hiện detail khi click vào-->
+<div  ng-if="detailVal">
+    {{groupName}}
+    <div ng-repeat="user in userDTO1s">
+        {{user.userName}}
+    </div>
+</div>
+My groups - (Group I'm in) - click to go to MY group
+<div ng-repeat="group in myGroups">
+  <div ng-click="joinInGroup(group.groupId)">
+      {{group.groupName}}-
+      {{group.groupId}}
+  </div>
 
+</div>
+Other groups - click to show Group detail - and join Modal
+<div ng-repeat="group in otherGroups">
+    <div>
+        {{group.groupName}}
+        {{group.groupId}}
+    </div>
     <button data-toggle="modal" data-target="#myModal" ng-click="setSelected(group)"> {{group.groupName}} +
         {{group.groupId}}
     </button>
@@ -168,21 +192,6 @@ classroom_detail + {{classId}}
             </div>
 
         </div>
-    </div>
-</div>
-My groups - (Group I'm in) - click to go to MY group
-<div ng-repeat="group in myGroups">
-  <div ng-click="joinInGroup(group.groupId)">
-      {{group.groupName}}-
-      {{group.groupId}}
-  </div>
-
-</div>
-Other groups - click to show Group detail - and join Modal
-<div ng-repeat="group in otherGroups">
-    <div>
-        {{group.groupName}}
-        {{group.groupId}}
     </div>
 <!--show modal add student to group-->
 </div>
