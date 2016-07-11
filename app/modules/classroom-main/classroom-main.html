@@ -87,9 +87,17 @@ My classroom
         </div>
         <div class="col-xs-2 classinformation" ng-if="detailVal">
             <p>class information</p>
-            {{className}}
-            {{classId}}
-            <!--<button class="btn btn-primary" ng-click="deleteStudentFromClass(classId)" >Leave</button>-->
+            <hr>
+            Tên lớp: {{className}} <br>
+            ID : {{classId}}<br>
+            Số lượng thành viên : {{users.length}}
+            <br>
+            <hr>
+            Danh Sách Thành Viên:
+            <div ng-repeat="userDTO1 in users">
+                {{userDTO1.username}}
+            </div>
+            <hr>
             <button class="btn btn-primary" ng-click="addStudentToClass(classId)">Join</button>
 
         </div>

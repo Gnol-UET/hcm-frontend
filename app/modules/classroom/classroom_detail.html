@@ -91,7 +91,7 @@ classroom_detail + {{classId}}
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="myModal">&times;</button>
-                        <h4 class="modal-title">Edit Classroom</h4>
+                        <h4 class="modal-title">Edit Post</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-signin">
@@ -111,10 +111,16 @@ classroom_detail + {{classId}}
             </div>
         </div>
         <div class="col-xs-8 postContent" ng-if="postVal" style="background-color: #ecf1ef;height: 400px ;overflow: auto;">
-            <p>Post information</p>
-            {{username}} :
-            {{postContent}}   <a type="button" data-toggle="modal" data-target="#EditPostModal" class="glyphicon glyphicon-pencil"></a>
-            {{postId}}
+           <div>
+
+           </div>
+            <div style="position: static">
+                <p>Post information</p>
+                {{username}} :
+                {{postContent}}   <a type="button" data-toggle="modal" data-target="#EditPostModal" class="glyphicon glyphicon-pencil"></a>
+                {{postId}}
+            </div>
+
                 <ul>
                     <br>
                     <li ng-if="postVal"ng-repeat="comment in comments">
@@ -196,10 +202,7 @@ classroom_detail + {{classId}}
                                     Join
                                     Group
                                 </button>
-                                <button class="btn btn-lg btn-primary btn-block " ng-click="userLeavegroup(selectedData.groupId)"
-                                        data-dismiss="modal">
-                                    Leave Group
-                                </button>
+
                                 <button class="btn btn-lg btn-default btn-block " data-dismiss="modal">Cancel
                                 </button>
                             </div>

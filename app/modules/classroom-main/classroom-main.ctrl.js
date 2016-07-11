@@ -55,6 +55,7 @@
                             function (response) {
                                 $scope.className = response.data.className;
                                 $scope.classId = response.data.classId;
+                                $scope.users = response.data.userDTO1s;
                             },
                             function (error) {
                                 console.log("error get detail");

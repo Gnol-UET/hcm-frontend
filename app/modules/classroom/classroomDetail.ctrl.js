@@ -111,16 +111,7 @@
                         })
 
                 }
-                $scope.userLeavegroup = function (group_id) {
-                    groupService.userLeavegroup(group_id)
-                        .then(
-                            function (response) {
-                                console.log("leave success");
-                            },
-                            function (error) {
-                                console.log("leave err");
-                            })
-                }
+                
 
                 $scope.deletePostClass = function (post) {
                     console.log(post.postId);

@@ -110,6 +110,17 @@
                             }
                         )
                 }
+                $scope.userLeavegroup = function (groupId) {
+                    groupService.userLeavegroup(groupId)
+                        .then(
+                            function (response) {
+                                window.history.back();
+                                console.log("leave success");
+                            },
+                            function (error) {
+                                console.log("leave err");
+                            })
+                }
 
             }])
 }())
