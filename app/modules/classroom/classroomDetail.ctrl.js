@@ -37,11 +37,13 @@
 
                         })
                 }
+                $scope.isShow = false;
                 if (localStorage['role'] == 'STUDENT'){
                     groupService.getMyGroup($scope.classId)
                         .then(function (response) {
                             $scope.myGroups = response.data;
                             console.log(response.data);
+                            $scope.isShow = true;
                         }, function (error, data) {
 
                         })
@@ -50,6 +52,8 @@
                     groupService.getNotEnrollGroup($scope.classId)
                         .then(function (response) {
                             $scope.otherGroups = response.data;
+                            $scope.isShow = true;
+
                         }, function (error, data) {
 
                         })
@@ -78,8 +82,11 @@
                             function (response) {
                                 console.log("enroll success");
                                 $location.path('/group/' + group_id);
-                            }
-                        )
+                            },
+                            function (error, data) {
+                                console.log("enroll error");
+                            })
+                
                 }
 
                 function setSelected(group) {
@@ -216,5 +223,16 @@
                             console.log("error get detail")
                         }
                 }
+                $scope.leaveClass = function (classId) {
+                    classroomService.deleteStudentFromClass(classId)
+                        .then(function (response) {
+                            console.log("leave success");
+                        }),
+                        function (error) {
+                            console.log("leave error");
+                        }
+                    $location.path('/classroom-main');
+                }
+
             }])
 }())

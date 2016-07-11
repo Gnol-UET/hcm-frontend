@@ -9,6 +9,31 @@
 GROUP
 classroom_detail + {{classId}}
 
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#leaveClass" ng-if = "isStudent == true">Leave Class</button>
+
+<!-- Modal -->
+<div class="modal fade" id="leaveClass" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">You want to leave this class ?</h3>
+            </div>
+            <!--<div class="modal-body">-->
+            <!--<p>Some text in the modal.</p>-->
+            <!--</div>-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click = "leaveClass(classId)">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br>
 
 
 
@@ -143,11 +168,11 @@ classroom_detail + {{classId}}
                 </li>
             </ul>
         </div>
-
+        <hr>
         <div class="row">
             Other groups - click to show Group detail - and join Modal
             <ul ng-repeat="group in otherGroups">
-                <li ng-click="joinInGroup(group.groupId)">
+                <li >
                     <a href="" class="black" data-toggle="modal" data-target="#myModal" ng-click="setSelected(group)">
                         <i class="fa fa-square-o " style="font-size: 8em"></i>
                     </a>
